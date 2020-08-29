@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  border-spacing: 0;
+  font-family: 'montserrat';
+}
+
+thead {
+  background-color: #e6edf2;
+  color: #b4b5c9;
+  font-size: small;
+  height: 1em;
+}
+
+thead th {
+  padding: 10px;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+}
+
+tbody td {
+  padding: 10px;
+  text-align: center;
+}
