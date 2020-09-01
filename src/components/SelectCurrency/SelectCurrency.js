@@ -9,14 +9,4 @@ export default styled.div`
   padding: 0;
   height: 60px;
   margin-right: 8px;
-
-  option {
-    background: white;
-    font-weight: small;
-    display: flex;
-    white-space: pre;
-    min-height: 20px;
-    padding: 0px 2px 1px;
-    color: #6a6c84
-  }
 `
