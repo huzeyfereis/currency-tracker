@@ -18,6 +18,11 @@ thead th {
 }
 
 tbody td {
-  padding: 10px;
   text-align: center;
+  padding: 20px;
+  border-bottom: 0.02em solid #b4b5c9;
+}
+
+tbody tr:hover {
+  background-color: #dddde077;
 }
