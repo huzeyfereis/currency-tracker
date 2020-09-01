@@ -65,79 +65,79 @@ const HomePage = () => {
     }
   }
 
-  if (!loading) {
-    return (
-      <Container>
-        <Navbar>
-          <Logo>VFCrypto</Logo>
-          <SelectCurrency>
-            <Select onChange={handleOnCurrencyChange}>
-              {globalCurrencies.map((value, index) => (
-                <option key={index} id={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </Select>
-          </SelectCurrency>
-        </Navbar>
-        <Table>
-          <thead className={styles.thead}>
-            <tr>
-              <th></th>
-              <th></th>
-              <th className={styles.coinInfo}>CRYPTOCURRENCY</th>
-              <th>PRICE</th>
-              <th>MARKET CAP</th>
-              <th>24H CHANGE</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currencies.data?.Data.map((currency, index) => {
-              const current = currency.DISPLAY[globalCurrency]
-              setPercentageColor(current)
-              return (
-                <tr
-                  key={index}
-                  onClick={() => handleGetDetail(currency.CoinInfo.Name)}
-                >
-                  <td>{index + 1}</td>
-                  <td>
-                    <img
-                      src={imageUrl + currency.CoinInfo.ImageUrl}
-                      width="30px"
-                      height="30px"
-                      alt="img"
-                    />
-                  </td>
+  return (
+    <Container>
+      {loading && <Loading />}
+      <Navbar>
+        <Logo>VFCrypto</Logo>
+        <SelectCurrency>
+          <Select onChange={handleOnCurrencyChange}>
+            {globalCurrencies.map((value, index) => (
+              <option key={index} id={index} value={value}>
+                {value}
+              </option>
+            ))}
+          </Select>
+        </SelectCurrency>
+      </Navbar>
+      <Table>
+        <thead className={styles.thead}>
+          <tr>
+            <th></th>
+            <th></th>
+            <th className={styles.coinInfo}>CRYPTOCURRENCY</th>
+            <th>PRICE</th>
+            <th>MARKET CAP</th>
+            <th>24H CHANGE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currencies.data?.Data.map((currency, index) => {
+            const current = currency.DISPLAY[globalCurrency]
+            setPercentageColor(current)
+            return (
+              <tr
+                key={index}
+                onClick={() => handleGetDetail(currency.CoinInfo.Name)}
+              >
+                <td>{index + 1}</td>
+                <td>
+                  <img
+                    src={imageUrl + currency.CoinInfo.ImageUrl}
+                    width="30px"
+                    height="30px"
+                    alt="img"
+                  />
+                </td>
 
-                  <td className={styles.coinInfo}>
-                    {currency.CoinInfo.FullName}
-                  </td>
-                  <td>{current.PRICE}</td>
-                  <td>{current.MKTCAP}</td>
-                  <td style={{ color: percentageStyle }}>
-                    {current.CHANGEPCT24HOUR}%{' '}
-                    <FontAwesomeIcon
-                      icon={
-                        percentageStyle === 'green'
-                          ? faArrowUp
-                          : percentageStyle === 'orange'
-                          ? faCircle
-                          : faArrowDown
-                      }
-                      size="xs"
-                    />
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </Table>
-      </Container>
-    )
-  } else {
-    return <Loading />
-  }
+                <td className={styles.coinInfo}>
+                  {currency.CoinInfo.FullName}
+                </td>
+                <td>{current.PRICE}</td>
+                <td>{current.MKTCAP}</td>
+                <td style={{ color: percentageStyle }}>
+                  {current.CHANGEPCT24HOUR}%{' '}
+                  <FontAwesomeIcon
+                    icon={
+                      percentageStyle === 'green'
+                        ? faArrowUp
+                        : percentageStyle === 'orange'
+                        ? faCircle
+                        : faArrowDown
+                    }
+                    size="xs"
+                  />
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </Table>
+    </Container>
+  )
+  // } else {
+  //   return <Loading />
+  // }
 }
 
 export default HomePage

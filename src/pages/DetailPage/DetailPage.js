@@ -57,7 +57,7 @@ const DetailPage = () => {
             onClick={handleGoBack}
             cursor="pointer"
             size="2x"
-            color="#E7F2FD"
+            color="#1a2f4e"
           />
           <CurrencyInfo>
             <div>
@@ -108,7 +108,7 @@ const DetailPage = () => {
               {currentCurrency[currentCurrencyCode].VOLUME24HOURTO}
             </div>
             <div className={styles.info}>
-              <div className={styles.title}>CIRULATING SUPPLY</div>
+              <div className={styles.title}>CIRCULATING SUPPLY</div>
               {currentCurrency[currentCurrencyCode].VOLUME24HOURTO}
               <span className={styles.code}>
                 {currencyInfo[0].CoinInfo.Name}
