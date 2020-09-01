@@ -54,15 +54,34 @@ const HomePage = () => {
     dispatch(getAllCryptoCurrenciesRequest(e.target.value))
   }
 
-  let percentageStyle = ''
-  const setPercentageColor = (currency) => {
+  const getPercentageColor = (currency) => {
     if (Number(currency?.CHANGEPCT24HOUR) < 0) {
-      percentageStyle = 'red'
+      return 'red'
     } else if (Number(currency?.CHANGEPCT24HOUR) === 0) {
-      percentageStyle = 'orange'
-    } else {
-      percentageStyle = 'green'
+      return 'orange'
     }
+    return 'green'
+  }
+
+  const renderIconIndicator = (currency) => {
+    const color = getPercentageColor(currency)
+    let icon = null
+    switch (color) {
+      case 'green':
+        icon = faArrowUp
+        break
+      case 'orange':
+        icon = faCircle
+        break
+      case 'red':
+        icon = faArrowDown
+        break
+
+      default:
+        break
+    }
+    if (!icon) return null
+    return <FontAwesomeIcon icon={icon} size="xs" />
   }
 
   return (
@@ -93,8 +112,8 @@ const HomePage = () => {
         </thead>
         <tbody>
           {currencies.data?.Data.map((currency, index) => {
-            const current = currency.DISPLAY[globalCurrency]
-            setPercentageColor(current)
+            const selectedCurrency = currency.DISPLAY[globalCurrency]
+
             return (
               <tr
                 key={index}
@@ -113,20 +132,11 @@ const HomePage = () => {
                 <td className={styles.coinInfo}>
                   {currency.CoinInfo.FullName}
                 </td>
-                <td>{current.PRICE}</td>
-                <td>{current.MKTCAP}</td>
-                <td style={{ color: percentageStyle }}>
-                  {current.CHANGEPCT24HOUR}%{' '}
-                  <FontAwesomeIcon
-                    icon={
-                      percentageStyle === 'green'
-                        ? faArrowUp
-                        : percentageStyle === 'orange'
-                        ? faCircle
-                        : faArrowDown
-                    }
-                    size="xs"
-                  />
+                <td>{selectedCurrency.PRICE}</td>
+                <td>{selectedCurrency.MKTCAP}</td>
+                <td style={{ color: getPercentageColor(selectedCurrency) }}>
+                  {selectedCurrency.CHANGEPCT24HOUR}%{' '}
+                  {renderIconIndicator(selectedCurrency)}
                 </td>
               </tr>
             )
