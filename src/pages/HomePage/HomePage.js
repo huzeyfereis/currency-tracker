@@ -88,7 +88,7 @@ const HomePage = () => {
     <Container>
       {loading && <Loading />}
       <Navbar>
-        <Logo>VFCrypto</Logo>
+        <Logo>Crypto</Logo>
         <SelectCurrency>
           <Select onChange={handleOnCurrencyChange}>
             {globalCurrencies.map((value, index) => (
